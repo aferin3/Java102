@@ -1,0 +1,3 @@
+# Java 102 with Patika.dev
+
+My training projects...
