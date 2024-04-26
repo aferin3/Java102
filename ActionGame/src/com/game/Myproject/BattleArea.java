@@ -130,7 +130,7 @@ public class BattleArea extends Location {
                 System.out.println("The " + mons + " xxxxxxx deflected the attack\n");
             } else if (!next && isHit) {
                 player.setHealth(player.getHealth()-monster.getDamage());
-                System.out.println("The " + mons + "hit======> " + player.getName() );
+                System.out.println("The " + mons + " hit======> " + player.getName() );
                 if(player.getHealth() <= 0) break;
                 System.out.println("The " + name + "'s Health: " + player.getHealth());
                 System.out.println();

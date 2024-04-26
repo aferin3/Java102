@@ -60,7 +60,7 @@ public class Game {
         battleAreas= new BattleArea[3];
         battleAreas[0]= new BattleArea(2,"Cave", "Food", zombie,4);
         battleAreas[1]= new BattleArea(3,"Forest", "Firewood", vampire,4);
-        battleAreas[2] = new BattleArea(4,"Nehir", "Water", bear,4);
+        battleAreas[2] = new BattleArea(4,"River", "Water", bear,4);
         
         
         

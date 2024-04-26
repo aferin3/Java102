@@ -21,9 +21,13 @@ public class SafeHouse extends Location {
     static Scanner input = new Scanner(System.in);
     //overload
     public void onLocation(Player player) {
+        
         if(prizebox[prizebox.length-1] != null){
             while(true){
-                System.out.println("**********************Congragualtions************************");
+                System.out.println("\n\t\t\t  *************************Congragualtions***************************");
+                System.out.println();
+                System.out.println("                         \t\t\tYou Finished the Game");
+                System.out.println();
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
