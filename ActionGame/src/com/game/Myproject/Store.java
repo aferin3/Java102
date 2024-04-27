@@ -6,14 +6,21 @@ public class Store extends Location {
 
     Weapon[] weapons;
     Armor[] armors;
+    public static Store store;
     
 
     public Store(int ID,String Name, Weapon[] weapons, Armor[] armors) {
         super(ID,Name);
         this.weapons = weapons;
         this.armors = armors;
+
+        
         
 
+    }
+
+    static {
+        store = new Store(1,"Store",Weapon.weapons,Armor.armors);
     }
 
     public void onLocation(Player player) {
@@ -48,12 +55,12 @@ public class Store extends Location {
                 else buy(player,armors[select-1]);
                 
             }else{
-                Game.safeHouse.onLocation(player);
+                SafeHouse.safeHouse.onLocation(player);
             }
             
             
         } catch (Exception e) {
-            System.out.println("\n!!!!!!!!!!!!!!!      Wrong choise. Please try again      !!!!!!!!!!!!!!!\n");
+            System.out.println(e);
             
             
         }

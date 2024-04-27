@@ -5,18 +5,22 @@ import java.util.Scanner;
 
 public class SafeHouse extends Location {
     public static String[] prizebox;
-   
+    public static SafeHouse safeHouse;
     
 
     public SafeHouse(int ID,String Name) {
         super(ID,Name);
         
+        
+        // Locations
+        
         prizebox = new String[3];
-        
-        
 
     }
     
+    static {
+        safeHouse = new SafeHouse(0,"Safe House");
+    }
 
     static Scanner input = new Scanner(System.in);
     //overload
@@ -46,29 +50,30 @@ public class SafeHouse extends Location {
         int select;
         System.out.println();
         System.out.println("Where do you want to go?");
-        Store store = Game.store;
-        System.out.println(store.getId() + "-" + store.getName());
+        
+        System.out.println(Store.store.getId() + "-" + Store.store.getName());
         try {
             Random random = new Random();
             
-            BattleArea[] battleAreas = Game.battleAreas;
-            for (BattleArea battleArea : battleAreas) {
-                int i = random.nextInt(battleArea.maxMonsterNum);
+            
+            for (BattleArea battleArea : BattleArea.battleAreas) {
+                int i = random.nextInt(battleArea.getMaxMonsterNum());
                 battleArea.setMonsterNumber(i+1);
+                
                 System.out.println(battleArea.getId()+"-"+battleArea.getName());
                 
             }
             select = input.nextInt();
             switch(select){
                 case 1:
-                Game.store.onLocation(player);
+                Store.store.onLocation(player);
                 break;
                 default:
-                battleAreas[select-2].onLocation(player);
+                BattleArea.battleAreas[select-2].onLocation(player);
             }    
         } catch (Exception e) {
-            System.out.println("Wrong Choice");
-            this.onLocation(player);
+            System.out.println(e);
+            //this.onLocation(player);
         }
         
         

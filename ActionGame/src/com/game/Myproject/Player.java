@@ -9,15 +9,24 @@ public class Player extends Character {
     int defaultHealth;
     int defaultDamage;
     int block;
+    public static Player[] players;
 
-    public Player(int id, String name, int health, int damage, int coin,int block) {
+    public Player(int id, String name, int health, int damage, int coin, int block) {
         super(id, name, health, damage, coin);
         this.defaultHealth = health;
-        this.block=block;
+        this.block = block;
         this.defaultDamage = damage;
 
     }
 
+    static {
+        // Players
+        players = new Player[4];
+        players[0] = new Player(1, "Samurai", 21, 5, 15, 30);
+        players[1] = new Player(2, "Archer", 18, 7, 20, 20);
+        players[2] = new Player(3, "Knight", 24, 8, 10, 10);
+        players[3] = new Player(4, "Poco", 25, 6, 20, 25);
+    }
 
     public int getBlock() {
         return this.block;
@@ -60,16 +69,17 @@ public class Player extends Character {
     }
 
     void armorAdd(Armor armor) {
-        super.setHealth(this.defaultHealth+armor.getDefence());
+        super.setHealth(this.defaultHealth + armor.getDefence());
         this.setArmor(armor);
 
     }
 
     void weaponAdd(Weapon weapon) {
-        super.setDamage(this.defaultDamage+weapon.getDamage());
+        super.setDamage(this.defaultDamage + weapon.getDamage());
         this.setWeapon(weapon);
     }
-    //overloading
+
+    // overloading
     void showDetails(Player player) {
         System.out.println("ID: " + player.getID());
         System.out.println("Name: " + player.getName());
@@ -77,26 +87,26 @@ public class Player extends Character {
         System.out.println("Damage: " + player.getDamage());
         System.out.println("Coin: " + player.getCoin());
         System.out.println("Defense:  " + player.getBlock());
-        
+
         if (player.getArmor() != null)
             System.out.println("Armor: " + player.getArmor().getName());
         if (player.getWeapon() != null)
             System.out.println("Weapon: " + player.getWeapon().getName());
-        if(SafeHouse.prizebox[0] != null)System.out.print("Prizes: ");
-        for (String  prizeString : SafeHouse.prizebox) {
-            if(prizeString != null){
+        if (SafeHouse.prizebox[0] != null)
+            System.out.print("Prizes: ");
+        for (String prizeString : SafeHouse.prizebox) {
+            if (prizeString != null) {
                 System.out.print(prizeString + "\t");
             }
-            
+
         }
         System.out.println();
 
     }
 
     public void goLocation(Player player, SafeHouse safeHouse) {
-        //safeHouse.onLocation(player,safeHouse);
-        
+        // safeHouse.onLocation(player,safeHouse);
+
     }
-    
 
 }

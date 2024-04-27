@@ -12,17 +12,30 @@ public class BattleArea extends Location {
     int maxMonsterNum;
     public static int defensePercentage = 20;
     public static int prizeNumber = 0;
+    public static BattleArea[] battleAreas;
 
     public BattleArea(int ID, String Name, String prize, Character monster, int maxMonsterNum) {
         super(ID, Name);
 
-        
         this.isGivenPrize = false;
         this.prize = prize;
         this.monster = monster;
         this.maxMonsterNum = maxMonsterNum;
         monsterNumber = 0;
 
+       
+
+    }
+
+    static {
+         //Battle Areas
+         battleAreas= new BattleArea[4];
+         battleAreas[0]= new BattleArea(2,"Cave", "Food", Character.monsters[0],3);
+         battleAreas[1]= new BattleArea(3,"Forest", "Firewood", Character.monsters[1],3);
+         battleAreas[2] = new BattleArea(4,"River", "Water", Character.monsters[2],3);
+         battleAreas[3] = new BattleArea(5,"Mine", null, Character.monsters[3], 6);
+
+         battleAreas[3].setIsGivenPrize(true); //There is no prize in Mine
     }
 
     @Override
@@ -42,51 +55,64 @@ public class BattleArea extends Location {
                         if (player.getHealth() <= 0) {
                             System.out.println("The " + player.getName() + " was dead.");
                             System.out.println("GAME OVER");
-                        } else  {
+                        } else {
                             System.out.println("The " + monster.getName() + " was dead");
-                            if(!isGivenPrize && prizeNumber<3) {
+                            if (!isGivenPrize && prizeNumber < 3) {
                                 SafeHouse.prizebox[prizeNumber] = this.prize;
-                                System.out.println("******************************************\tYou win new prize: "+ this.prize + "\t\t******************************************");
+                                System.out.println("******************************************\tYou win new prize: "
+                                        + this.prize + "\t\t******************************************");
                                 isGivenPrize = true;
                                 prizeNumber++;
-                                
+
                             }
+                           if(monster.getID() != 4){ 
                             System.out.println();
                             System.out.println("You win " + monster.getCoin() + " coin.\n");
-                            player.setCoin(player.getCoin()+monster.getCoin());
-                            Game.safeHouse.onLocation(player);
+                            player.setCoin(player.getCoin() + monster.getCoin());
+                           }else {
+                            Snake.deathSnake(Character.monsters[3]);
+                           }
+                            SafeHouse.safeHouse.onLocation(player);
                         }
                     } else {
-                        
+
                         for (int i = 0; i < monsterNumber; i++) {
-                            System.out.println((i+1) + ". " + monster.getName());
+                            System.out.println((i + 1) + ". " + monster.getName());
                             monster.setHealth(monster.defaultHealth);
                             Thread.sleep(3000);
                             fight(player, monster);
-                            if(monster.getHealth()<=0){
-                                 System.out.println((i+1) + "." + monster.getName() + " was dead. \nYou win " + monster.getCoin() + " coin\n");
+                            if (monster.getHealth() <= 0) {
+                                if (monster.getID() != 4) {
+                                    System.out.println((i + 1) + "." + monster.getName() + " was dead. \nYou win "
+                                            + monster.getCoin() + " coin\n");
+                                    player.setCoin(player.getCoin() + monster.getCoin());
+                                } else {
+                                    Snake.deathSnake(Character.monsters[3]);
+
+                                }
+
                             }
-                            player.setCoin(player.getCoin()+monster.getCoin());
-                            
+
                         }
                         if (player.getHealth() <= 0) {
                             System.out.println("The " + player.getName() + " was dead.");
                             System.out.println("GAME OVER");
-                        } else  {
+                        } else {
                             System.out.println("All " + monster.getName() + "s were dead");
-                            if(!isGivenPrize && prizeNumber<3) {
+                            if (!isGivenPrize && prizeNumber < SafeHouse.prizebox.length) {
                                 SafeHouse.prizebox[prizeNumber] = this.prize;
-                                System.out.println("******************************************\tYou win new prize: "+ this.prize + "\t\t******************************************");
+                                System.out.println("******************************************\tYou win new prize: "
+                                        + this.prize + "\t\t******************************************");
                                 isGivenPrize = true;
                                 prizeNumber++;
-                                
+
                             }
-                            Game.safeHouse.onLocation(player);
+                            SafeHouse.safeHouse.onLocation(player);
                         }
                     }
                     break;
                 case 2:
-                    Game.safeHouse.onLocation(player);
+                    SafeHouse.safeHouse.onLocation(player);
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -96,7 +122,8 @@ public class BattleArea extends Location {
     }
 
     void fight(Player player, Character monster) {
-        Boolean next = true;
+        Boolean next;
+        next = (int) Math.random() * 100 % 2 == 0 ? true : false; // who start first
         Boolean isHit = true;
         String name = player.getName();
         String mons = monster.getName();
@@ -123,15 +150,17 @@ public class BattleArea extends Location {
             if (next && isHit) {
                 monster.setHealth(monster.getHealth() - player.getDamage());
                 System.out.println(name + " hit======> The" + mons);
-                if(monster.getHealth()<=0) break;
+                if (monster.getHealth() <= 0)
+                    break;
                 System.out.println("The " + mons + "'s Health: " + monster.getHealth());
 
             } else if (next && !isHit) {
                 System.out.println("The " + mons + " xxxxxxx deflected the attack\n");
             } else if (!next && isHit) {
-                player.setHealth(player.getHealth()-monster.getDamage());
-                System.out.println("The " + mons + " hit======> " + player.getName() );
-                if(player.getHealth() <= 0) break;
+                player.setHealth(player.getHealth() - monster.getDamage());
+                System.out.println("The " + mons + " hit======> " + player.getName());
+                if (player.getHealth() <= 0)
+                    break;
                 System.out.println("The " + name + "'s Health: " + player.getHealth());
                 System.out.println();
             } else {
@@ -146,7 +175,6 @@ public class BattleArea extends Location {
             }
 
         }
-        
 
     }
 

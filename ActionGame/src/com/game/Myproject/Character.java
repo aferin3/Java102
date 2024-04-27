@@ -1,6 +1,5 @@
 package com.game.Myproject;
 
-
 public class Character {
     private int id;
     private String name;
@@ -10,8 +9,7 @@ public class Character {
     private Weapon weapon;
     private Armor armor;
     int defaultHealth;
-    
-    
+    public static Character[] monsters;
 
     public Character(int id, String name, int health, int damage, int coin) {
         this.id = id;
@@ -20,9 +18,18 @@ public class Character {
         this.damage = damage;
         this.coin = coin;
         this.defaultHealth = health;
+
     }
 
-
+    static {
+        
+        // MOnsters
+        monsters = new Character[4];
+        monsters[0]= new Character(1, "Zombie", 10, 3, 4);
+        monsters[1] = new Character(2, "Vampire", 14, 4, 7);
+        monsters[2] = new Character(3, "Bear", 20, 7, 12);
+        monsters[3] = new Snake(4, "Snake", 12, 5);
+    }
     public int getId() {
         return this.id;
     }
@@ -46,7 +53,6 @@ public class Character {
     public void setArmor(Armor armor) {
         this.armor = armor;
     }
-
 
     public int getID() {
         return this.id;
@@ -102,7 +108,6 @@ public class Character {
         System.out.println("Damage: " + character.getDamage());
         System.out.println("Coin: " + character.getCoin());
         System.out.println();
-       
 
     }
 }
