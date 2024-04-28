@@ -17,7 +17,7 @@ public class Game {
 
     public static void main(String[] args) {
 
-
+        
         @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         int select = 0;
