@@ -15,7 +15,7 @@ public class App {
         teams.add("Karagümrük");
         teams.add("Eskişehirspor");
         
-
+        
         CreateFixture createFixture = new CreateFixture(teams);
         
         List<String> fixtures = createFixture.generateFixtures();
