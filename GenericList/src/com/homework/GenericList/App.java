@@ -1,6 +1,6 @@
 package com.homework.GenericList;
 
-import java.util.Arrays;
+
 
 
 public class App {
