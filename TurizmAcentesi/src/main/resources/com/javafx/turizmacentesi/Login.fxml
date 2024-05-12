@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="loginvBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.turizmacentesi.Login">
+   <children>
+      <Label id="titletext" fx:id="titletext" text="Patika Turizm Sistem Girişi">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/tourismLogo.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="userNameTF" alignment="CENTER" maxWidth="200.0" text="aferfidan3@gmail.com">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </TextField>
+      <PasswordField fx:id="passwordTF" alignment="CENTER" maxWidth="200.0" promptText="Şifre" text="1234">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </PasswordField>
+      <Button id="loginBtn" fx:id="loginBtn" mnemonicParsing="false" onAction="#logcheck" prefWidth="100.0" text="Giriş">
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </Button>
+   </children>
+</VBox>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox fx:id="hBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.turizmacentesi.UserDesign">
+   <children>
+      <ImageView fx:id="userimg" disable="true" fitHeight="44.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+         <image>
+            <Image url="@../../../images/usericon.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameUD1" disable="true" layoutX="114.0" layoutY="32.0" prefHeight="20.0" prefWidth="31.0" text="ID">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameUD" disable="true" prefWidth="75.0" text="Afer">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin></Label>
+      <Label fx:id="surnameUD" disable="true" layoutX="108.0" layoutY="32.0" prefWidth="75.0" text="Fidan">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="usernameUD" disable="true" layoutX="258.0" layoutY="32.0" prefHeight="27.0" prefWidth="250.0" text="aferfidan3@gmail.com">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="typeUD" disable="true" layoutX="428.0" layoutY="32.0" prefHeight="27.0" prefWidth="75.0" text="admin">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </Label>
+   </children>
+</HBox>
