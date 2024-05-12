@@ -3,7 +3,6 @@ package Model;
 import com.javafx.turizmacentesi.DBConnection;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserAdmin extends Users{
@@ -39,7 +38,7 @@ public class UserAdmin extends Users{
         return true;
     }
 
-    public Boolean deleteUser(int ID){
+    public boolean deleteUser(int ID){
         try {
             PreparedStatement ps = DBConnection.getCon().prepareStatement("DELETE FROM users WHERE ID=?");
             ps.setInt(1,ID);
@@ -52,6 +51,22 @@ public class UserAdmin extends Users{
         }
 
 
+    }
+    public boolean userEdit(int ID,String name,String surname,String username,String password,String userType){
+        try {
+            PreparedStatement ps = DBConnection.getCon().prepareStatement("UPDATE users SET name = ?,surname = ?,username = ?, password = ?, usertype = ? WHERE id = ?");
+            ps.setString(1,name);
+            ps.setString(2,surname);
+            ps.setString(3,username);
+            ps.setString(4,password);
+            ps.setString(5,userType);
+            ps.setInt(6,ID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getSQLState());
+        }
+
+        return true;
     }
 
 

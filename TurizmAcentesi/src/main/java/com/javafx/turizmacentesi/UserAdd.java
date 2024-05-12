@@ -47,13 +47,13 @@ public class UserAdd implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         comboType.setItems(userTypes);
-
+        comboType.setValue(userTypes.get(1));
     }
 
 
     @FXML
     public void addUser() {
-        if (name.getText().isEmpty() || surname.getText().isEmpty() || username.getText().isEmpty() || pass.getText().isEmpty()|| comboType.getValue() == null) {
+        if (name.getText().isEmpty() || surname.getText().isEmpty() || username.getText().isEmpty() || pass.getText().isEmpty()) {
             Helper.showFillAlert();
         }else {
             UserAdmin user = (UserAdmin) Login.loginUser;

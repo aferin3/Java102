@@ -15,9 +15,9 @@
          </font></Label>
       <SplitPane dividerPositions="0.38581730769230765" prefWidth="800.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="530.0">
+          <AnchorPane fx:id="infoAnchor" minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="530.0" visible="false">
                <children>
-                  <GridPane fx:id="infoGrid" layoutX="33.0" layoutY="139.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="infoGrid" layoutX="33.0" layoutY="139.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="143.4" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.4" minWidth="10.0" prefWidth="238.99999999999997" />
@@ -25,7 +25,7 @@
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -113,15 +113,25 @@
                               <Font name="Comic Sans MS" size="18.0" />
                            </font>
                         </Label>
+                        <TextField fx:id="editName" maxWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="editSurname" layoutX="176.0" layoutY="202.0" maxWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="editPass" layoutX="176.0" layoutY="319.0" maxWidth="200.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="editUsername" layoutX="176.0" layoutY="260.0" maxWidth="200.0" visible="false" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <ComboBox fx:id="editType" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
-                  <ImageView fitHeight="65.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
+                  <ImageView fx:id="editButton" fitHeight="65.0" fitWidth="81.0" onMouseClicked="#userEdit" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
                      <image>
                         <Image url="@../../../images/editButton.png" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="checkOk" fitHeight="87.0" fitWidth="94.0" layoutX="330.0" layoutY="365.0" onMouseClicked="#userEdit" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../../../images/checMarkButton.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="usersAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
@@ -132,12 +142,12 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <ImageView fitHeight="81.0" fitWidth="81.0" onMouseClicked="#addUser" opacity="0.78" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                  <ImageView fx:id="addButton" fitHeight="81.0" fitWidth="81.0" onMouseClicked="#addUser" opacity="0.78" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
                      <image>
                         <Image url="@../../../images/plusIcon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="109.0" fitWidth="107.0" onMouseClicked="#deleteUser" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0" AnchorPane.rightAnchor="15.0">
+                  <ImageView fx:id="dustButton" fitHeight="109.0" fitWidth="107.0" onMouseClicked="#deleteUser" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0" AnchorPane.rightAnchor="15.0">
                      <image>
                         <Image url="@../../../images/dustbin.png" />
                      </image>

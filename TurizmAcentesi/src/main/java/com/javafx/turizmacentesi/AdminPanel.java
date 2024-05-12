@@ -4,14 +4,19 @@ package com.javafx.turizmacentesi;
 import Model.UserAdmin;
 
 import Model.UserType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,25 +32,22 @@ import java.util.ResourceBundle;
 
 public class AdminPanel implements Initializable {
     @FXML
-    Label welcomeText;
+    Label welcomeText, labelID,labelName,labelSurname,labelUserName,labelPass,labelType;
     @FXML
-    Label labelID;
+    TextField editName,editSurname,editUsername,editPass;
     @FXML
-    Label labelName;
-    @FXML
-    Label labelSurname;
-    @FXML
-    Label labelUserName;
-    @FXML
-    Label labelPass;
-    @FXML
-    Label labelType;
+    ComboBox<String> editType;
     @FXML
     VBox userVbox;
-    @FXML
-    GridPane infoGrid;
+
     @FXML
     VBox anaVbox;
+    @FXML
+    ImageView checkOk,dustButton,addButton,editButton;
+
+
+    @FXML
+    AnchorPane usersAnchor,infoAnchor;
 
     int click=0;
 
@@ -55,9 +57,18 @@ public class AdminPanel implements Initializable {
     ArrayList<UserAdmin> userAdmins = new ArrayList<>();
 
 
+    ObservableList<String> userTypes =
+            FXCollections.observableArrayList(
+                    "ADMIN",
+                    "PERSONAL"
+            );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+        editType.setItems(userTypes);
+
 
 
         userAdmin =(UserAdmin) Login.loginUser;
@@ -66,10 +77,67 @@ public class AdminPanel implements Initializable {
 
 
 
+        setUsers();
+
+        userVbox.setOnMouseClicked(event ->
+
+        {
+
+
+
+
+
+
+            try {
+                if (!hBox.equals(null)) {
+                    hBox.setStyle("-fx-background-color: transparent;");
+                }
+                Object target = event.getTarget();
+                if (target instanceof Node) {
+                    if(target instanceof VBox){             //tıklanan öğe eğer vbox ın kendisi ise bir işlem veya hata yapmasın diye
+                        System.out.println("bu bir vbox");
+                    }else {
+                        ((Node) target).setStyle("-fx-background-color: #4299CF");  // öğeye tıklandığında renk değiştirmesi için
+                        hBox = (HBox) target;
+                        click = userVbox.getChildren().indexOf(target);
+                    }
+                }
+            }catch (Exception e){
+                System.out.println(e);
+            }
+
+
+            //click = userVbox.getChildren().indexOf(target);
+
+
+            //System.out.println(userAdmins.get(click).getUserID());
+            //click =0;
+
+            clickUser(click);
+
+
+        });
+
+
+    }
+
+    private void clickUser(int location) {
+
+        infoAnchor.setVisible(true);
+        labelID.setText(String.valueOf(userAdmins.get(location).getUserID()));
+        labelName.setText(userAdmins.get(location).getName());
+        labelSurname.setText(userAdmins.get(location).getSurname());
+        labelUserName.setText(userAdmins.get(location).getUsername());
+        labelPass.setText(userAdmins.get(location).getPassword());
+        labelType.setText(userAdmins.get(location).getUserType().toString());
+    }
+
+    private void setUsers() {
+        userVbox.getChildren().remove(0, userVbox.getChildren().size());
         ResultSet rs;
 
         try {
-            PreparedStatement ps = DBConnection.getCon().prepareStatement("select * from users");
+            PreparedStatement ps = DBConnection.getCon().prepareStatement("select * from users ORDER BY id");
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -115,52 +183,6 @@ public class AdminPanel implements Initializable {
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        userVbox.setOnMouseClicked(event ->
-
-        {
-
-
-
-
-
-
-            try {
-                if (!hBox.equals(null)) {
-                    hBox.setStyle("-fx-background-color: transparent;");
-                }
-                Object target = event.getTarget();
-                if (target instanceof Node) {
-                    if(target instanceof VBox){             //tıklanan öğe eğer vbox ın kendisi ise bir işlem veya hata yapmasın diye
-                        System.out.println("bu bir vbox");
-                    }else {
-                        ((Node) target).setStyle("-fx-background-color: #4299CF");  // öğeye tıklandığında renk değiştirmesi için
-                        hBox = (HBox) target;
-                        click = userVbox.getChildren().indexOf(target);
-                    }
-                }
-            }catch (Exception e){
-                System.out.println(e);
-            }
-
-            infoGrid.setVisible(true);
-            //click = userVbox.getChildren().indexOf(target);
-
-
-            //System.out.println(userAdmins.get(click).getUserID());
-            //click =0;
-
-            labelID.setText(String.valueOf(userAdmins.get(click).getUserID()));
-            labelName.setText(userAdmins.get(click).getName());
-            labelSurname.setText(userAdmins.get(click).getSurname());
-            labelUserName.setText(userAdmins.get(click).getUsername());
-            labelPass.setText(userAdmins.get(click).getPassword());
-            labelType.setText(userAdmins.get(click).getUserType().toString());
-
-
-        });
-
-
     }
 
     public void addUser() {
@@ -177,11 +199,67 @@ public class AdminPanel implements Initializable {
 
             userAdmin.deleteUser(userAdmins.get(click).getUserID());
             userAdmins.remove(click);
+            clickUser(0);
 
         }else{
             System.out.println("olmadı");
+
         }
 
+    }
+    @FXML
+    public void userEdit(){
+        if(editButton.isVisible()){
+            checkOk.setVisible(true);
+            editButton.setVisible(false);
+
+            editName.setText(labelName.getText());
+            editSurname.setText(labelSurname.getText());
+            editUsername.setText(labelUserName.getText());
+            editPass.setText(labelPass.getText());
+
+            editType.setValue(labelType.getText());  //comboBox varsayılan değeri ayarladık
+
+
+            addButton.setVisible(false);
+            dustButton.setVisible(false);
+
+            editName.setVisible(true);
+            editSurname.setVisible(true);
+            editUsername.setVisible(true);
+            editType.setVisible(true);
+            editPass.setVisible(true);
+
+
+
+
+
+
+
+        }else {
+            checkOk.setVisible(false);
+            editButton.setVisible(true);
+            editName.setVisible(false);
+            editSurname.setVisible(false);
+            editUsername.setVisible(false);
+            editType.setVisible(false);
+            editPass.setVisible(false);
+
+            addButton.setVisible(true);
+            dustButton.setVisible(true);
+
+
+            userAdmin.userEdit(Integer.parseInt(labelID.getText()),editName.getText(),editSurname.getText(),editUsername.getText(),editPass.getText(),editType.getValue());
+            userAdmins.get(click).setName(editName.getText());
+            userAdmins.get(click).setSurname(editSurname.getText());
+            userAdmins.get(click).setUsername(editUsername.getText());
+            userAdmins.get(click).setPassword(editPass.getText());
+            userAdmins.get(click).setUserType(UserType.valueOf(editType.getValue()));
+
+
+            setUsers();
+            clickUser(click);
+        }
     }
 
 
