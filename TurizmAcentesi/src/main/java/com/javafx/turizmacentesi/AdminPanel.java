@@ -47,6 +47,7 @@ public class AdminPanel implements Initializable {
     @FXML
     VBox anaVbox;
 
+    int click=0;
 
     UserAdmin userAdmin;
     public HBox hBox = new HBox();
@@ -122,7 +123,7 @@ public class AdminPanel implements Initializable {
 
 
 
-            int click=0;
+
 
             try {
                 if (!hBox.equals(null)) {
@@ -170,6 +171,18 @@ public class AdminPanel implements Initializable {
 
     }
 
+    public void deleteUser(){
+        if (Helper.onay("Onay","Emin misiniz", userAdmins.get(click).getUsername(),"Sil","İptal")){
+            userVbox.getChildren().remove(click);
+
+            userAdmin.deleteUser(userAdmins.get(click).getUserID());
+            userAdmins.remove(click);
+
+        }else{
+            System.out.println("olmadı");
+        }
+
+    }
 
 
 }

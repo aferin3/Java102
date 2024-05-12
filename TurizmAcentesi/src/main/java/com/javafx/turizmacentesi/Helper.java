@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -52,6 +53,18 @@ public class Helper {
 
 
 
+    }
+    public static boolean onay(String title, String header, String content,String OkButtonText, String CancelButtonText){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        ButtonType yes = new ButtonType(OkButtonText);
+        ButtonType no = new ButtonType(CancelButtonText);
+        alert.getButtonTypes().setAll(yes, no);
+        var result = alert.showAndWait();
+
+        return result.isPresent() && result.get() == yes;
     }
 
 }

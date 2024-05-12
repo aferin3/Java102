@@ -39,7 +39,18 @@ public class UserAdmin extends Users{
         return true;
     }
 
-    public void deleteUser(){
+    public Boolean deleteUser(int ID){
+        try {
+            PreparedStatement ps = DBConnection.getCon().prepareStatement("DELETE FROM users WHERE ID=?");
+            ps.setInt(1,ID);
+
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+
+            return false;
+        }
+
 
     }
 

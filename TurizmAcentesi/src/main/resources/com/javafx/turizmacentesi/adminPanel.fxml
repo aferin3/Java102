@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="anaVbox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.turizmacentesi.AdminPanel">
+<VBox fx:id="anaVbox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.turizmacentesi.AdminPanel">
    <children>
       <Label fx:id="welcomeText" alignment="CENTER" text="Hoşgeldin">
          <font>
@@ -115,6 +115,11 @@
                         </Label>
                      </children>
                   </GridPane>
+                  <ImageView fitHeight="65.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
+                     <image>
+                        <Image url="@../../../images/editButton.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -130,6 +135,11 @@
                   <ImageView fitHeight="81.0" fitWidth="81.0" onMouseClicked="#addUser" opacity="0.78" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
                      <image>
                         <Image url="@../../../images/plusIcon.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="109.0" fitWidth="107.0" onMouseClicked="#deleteUser" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0" AnchorPane.rightAnchor="15.0">
+                     <image>
+                        <Image url="@../../../images/dustbin.png" />
                      </image>
                   </ImageView>
                </children>
