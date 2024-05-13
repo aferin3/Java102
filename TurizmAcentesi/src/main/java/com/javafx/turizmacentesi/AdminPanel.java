@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,15 +19,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 
-import javax.swing.event.ChangeEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -94,6 +95,8 @@ public class AdminPanel implements Initializable {
             }
         });
 
+
+
         setRadio();
         allRadio.setSelected(true);
 
@@ -109,11 +112,13 @@ public class AdminPanel implements Initializable {
 
         setUsers();
 
+
+
         userVbox.setOnMouseClicked(event ->
 
         {
             try {
-                if (!hBox.equals(null)) {
+                if (hBox != null) {
                     hBox.setStyle("-fx-background-color: transparent;");
                 }
                 Object target = event.getTarget();
@@ -130,10 +135,11 @@ public class AdminPanel implements Initializable {
                 System.out.println(e);
             }
 
-            clickUser(click);
 
+          clickUser(click);
 
         });
+
 
 
     }
@@ -314,6 +320,8 @@ public class AdminPanel implements Initializable {
             checkOk.setVisible(true);
             editButton.setVisible(false);
 
+            usersAnchor.setDisable(true);
+
             editName.setText(labelName.getText());
             editSurname.setText(labelSurname.getText());
             editUsername.setText(labelUserName.getText());
@@ -344,6 +352,7 @@ public class AdminPanel implements Initializable {
             addButton.setVisible(true);
             dustButton.setVisible(true);
 
+            usersAnchor.setDisable(false);
 
             userAdmin.userEdit(Integer.parseInt(labelID.getText()), editName.getText(), editSurname.getText(), editUsername.getText(), editPass.getText(), editType.getValue());
             userAdmins.get(click).setName(editName.getText());
@@ -362,6 +371,19 @@ public class AdminPanel implements Initializable {
             }
             clickUser(click);
         }
+    }
+
+    @FXML
+    public void bigger(MouseEvent event){
+        ImageView imageView = (ImageView) event.getSource();
+
+        Helper.bigButton(imageView);
+    }
+    @FXML
+    public void opak(MouseEvent event){
+        ImageView imageView = (ImageView) event.getSource();
+
+        Helper.smallButton(imageView);
     }
 
 

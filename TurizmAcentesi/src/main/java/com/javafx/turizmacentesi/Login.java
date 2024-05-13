@@ -51,7 +51,7 @@ public class Login implements Initializable{
                 pst.setString(2,password);
                 ResultSet rs = pst.executeQuery();
                 // Login olan kullanıcıyı başka sınıflarda da kullanmak için böyle bir tanımlama yaptım.
-
+                String page = null;
                 if(rs.next()){
                     if(rs.getString("usertype").equals("ADMIN")){
                         loginUser = new UserAdmin(
@@ -61,16 +61,27 @@ public class Login implements Initializable{
                                 rs.getString("password"),
                                 UserType.ADMIN
                         );
+                        page = "adminPanel.fxml";
 //                        System.out.println("hoşgeldin admin " + loginUser.getName());
                         // login ekranını kapatmak için
 
+
+                    } else if (rs.getString("usertype").equals("PERSONAL")) {
+                        loginUser = new UserAdmin(
+                                rs.getString("name"),
+                                rs.getString("surname"),
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                UserType.PERSONAL
+                        );
+                        page = "personalPanel.fxml";
 
                     }
                     Stage stage = (Stage) loginvBox.getScene().getWindow();
                     stage.close();
 
                     Parent parent = new VBox();
-                    Helper.changeScene(this.getClass(),"adminPanel.fxml",parent);
+                    Helper.changeScene(this.getClass(),page,parent);
 
 
                 }else {

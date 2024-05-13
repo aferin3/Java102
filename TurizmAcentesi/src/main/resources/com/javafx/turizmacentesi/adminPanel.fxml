@@ -9,7 +9,7 @@
 
 <VBox fx:id="anaVbox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.turizmacentesi.AdminPanel">
    <children>
-      <GridPane>
+      <GridPane prefHeight="50.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="922.0" minWidth="10.0" prefWidth="846.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="545.0" minWidth="10.0" prefWidth="254.0" />
@@ -18,9 +18,9 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="welcomeText" alignment="CENTER" text="Hoşgeldin">
+            <Label fx:id="welcomeText" alignment="CENTER" text="Hoşgeldin" GridPane.halignment="LEFT">
                <font>
-                  <Font name="Arial Black" size="24.0" />
+                  <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Label>
             <RadioButton fx:id="allRadio" layoutX="850.0" layoutY="16.0" mnemonicParsing="false" text="Hepsi" GridPane.columnIndex="1" />
@@ -139,12 +139,12 @@
                         <ComboBox fx:id="editType" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
-                  <ImageView fx:id="editButton" fitHeight="65.0" fitWidth="81.0" onMouseClicked="#userEdit" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
+                  <ImageView fx:id="editButton" fitHeight="65.0" fitWidth="81.0" onMouseClicked="#userEdit" onMouseExited="#opak" onMouseMoved="#bigger" opacity="0.56" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
                      <image>
                         <Image url="@../../../images/editButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="checkOk" fitHeight="87.0" fitWidth="94.0" layoutX="330.0" layoutY="365.0" onMouseClicked="#userEdit" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="checkOk" fitHeight="87.0" fitWidth="94.0" layoutX="330.0" layoutY="365.0" onMouseClicked="#userEdit" onMouseExited="#opak" onMouseMoved="#bigger" opacity="0.55" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/checMarkButton.png" />
                      </image>
@@ -161,12 +161,12 @@
                         </VBox>
                      </content>
                   </ScrollPane>
-                  <ImageView fx:id="addButton" fitHeight="81.0" fitWidth="81.0" onMouseClicked="#addUser" opacity="0.78" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                  <ImageView fx:id="addButton" fitHeight="81.0" fitWidth="81.0" onMouseClicked="#addUser" onMouseExited="#opak" onMouseMoved="#bigger" opacity="0.55" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0">
                      <image>
                         <Image url="@../../../images/plusIcon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="dustButton" fitHeight="109.0" fitWidth="107.0" onMouseClicked="#deleteUser" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0" AnchorPane.rightAnchor="15.0">
+                  <ImageView fx:id="dustButton" fitHeight="109.0" fitWidth="107.0" onMouseClicked="#deleteUser" onMouseExited="#opak" onMouseMoved="#bigger" opacity="0.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0" AnchorPane.rightAnchor="15.0">
                      <image>
                         <Image url="@../../../images/dustbin.png" />
                      </image>

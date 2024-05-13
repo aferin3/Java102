@@ -1,21 +1,24 @@
 package com.javafx.turizmacentesi;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.VBox;
+
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.awt.*;
+
+
 import java.io.IOException;
 
 
 public class Helper {
+
+
 
     public static void showFillAlert(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -68,5 +71,18 @@ public class Helper {
 
         return result.isPresent() && result.get() == yes;
     }
+
+    public static void bigButton(ImageView imageView){
+        imageView.setStyle("-fx-opacity: 1.0;");
+        imageView.setScaleX(1.2);
+        imageView.setScaleY(1.2);
+    }
+    public static void smallButton(ImageView imageView){
+        imageView.setStyle("-fx-opacity: 0.5;");
+        imageView.setScaleX(1.0);
+        imageView.setScaleY(1.0);
+
+    }
+
 
 }

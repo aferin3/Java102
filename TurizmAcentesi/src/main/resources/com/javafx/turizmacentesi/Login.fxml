@@ -21,7 +21,7 @@
             <Image url="@../../../images/tourismLogo.png" />
          </image>
       </ImageView>
-      <TextField fx:id="userNameTF" alignment="CENTER" maxWidth="200.0" text="aferfidan3@gmail.com">
+      <TextField fx:id="userNameTF" alignment="CENTER" maxWidth="200.0" text="dilam">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
