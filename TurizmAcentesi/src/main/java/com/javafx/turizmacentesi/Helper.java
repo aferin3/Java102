@@ -37,18 +37,18 @@ public class Helper {
 
         alert.showAndWait();
     }
-    public  static void changeScene(Class aClass, String fxmlFile, Parent root){
+    public  static void changeScene(Class aClass, String fxmlFile, Parent parent){
         // Giriş yapıldıktan sonra
 
 
         Stage stage = new Stage();
-        root = null;
+        //parent = null;
         try {
-            root = (Parent) FXMLLoader.load(aClass.getResource(fxmlFile));
+            parent = (Parent) FXMLLoader.load(aClass.getResource(fxmlFile));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(parent));
         stage.setTitle("Patika Turizm Acentesi");
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.WINDOW_MODAL);

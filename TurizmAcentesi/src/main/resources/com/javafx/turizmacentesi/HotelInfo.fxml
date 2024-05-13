@@ -1,14 +1,217 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.javafx.turizmacentesi.HotelInfo"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="467.0" prefWidth="804.0" style="-fx-background-color: fffaf0;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.turizmacentesi.HotelInfo">
+   <children>
+       <ImageView fx:id="editButton" fitHeight="65.0" fitWidth="81.0" opacity="0.56" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
+           <image>
+               <Image url="@../../../images/editButton.png" />
+           </image>
+       </ImageView>
+       <ImageView fx:id="checkOk" fitHeight="87.0" fitWidth="94.0" layoutX="330.0" layoutY="365.0" opacity="0.55" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="20.0">
+           <image>
+               <Image url="@../../../images/checMarkButton.png" />
+           </image>
+       </ImageView>
+      <ImageView fitHeight="467.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../../images/hotelPhoto.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER_RIGHT" layoutX="230.0" layoutY="32.0" prefHeight="35.0" prefWidth="574.0" style="-fx-background-color: cdc5bf;" text="Hotel Name" textFill="#d76060" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Comic Sans MS" size="24.0" />
+         </font></Label>
+      <GridPane layoutX="392.0" layoutY="111.0" prefHeight="423.0" prefWidth="574.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="225.39999237060547" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="79.0000076293945" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="404.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="37.19999618530273" minHeight="10.0" prefHeight="31.4" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.200000000000003" minHeight="10.0" prefHeight="30.200000000000003" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.80000000000001" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="104.99999999999997" minHeight="10.0" prefHeight="68.20000000000002" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="104.99999999999997" minHeight="0.0" prefHeight="15.800000000000011" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="124.60001525878903" minHeight="3.3999999999999773" prefHeight="67.19999999999999" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="107.80000000000001" minHeight="5.399999999999977" prefHeight="32.19999999999999" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="53.60000000000002" minHeight="10.0" prefHeight="45.39999999999998" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Şehir:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="68.0" text="Bölge:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="68.0" text="Tam Adres:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="139.0" layoutY="68.0" text="E-Posta:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="211.0" text="Telefon:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="258.0" text="Hizmetler:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label contentDisplay="BOTTOM" layoutX="10.0" layoutY="305.0" text="Yıldız:" textFill="#d76060" GridPane.halignment="RIGHT">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="21.0" text="Pansiyon Tipleri:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="316.0" text="Dönemler:" textFill="#d76060" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <HBox maxWidth="250.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/star.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="30.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/star.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="62.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/star.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="94.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/star.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/star.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label text="İstanbul" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="225.0" layoutY="64.0" text="Beyoğlu" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="225.0" layoutY="64.0" text="Taksim" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="225.0" layoutY="148.0" text="555" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="225.0" layoutY="148.0" text="hotel@gmail.com" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="2" />
+                  <CheckBox layoutX="10.0" layoutY="14.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="130.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="130.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" />
+                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="225.0" layoutY="240.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="2" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" />
+               </children>
+            </GridPane>
+            <Label layoutX="225.0" layoutY="55.0" text="17/05-17/08  &amp; 17/08-17/05" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>
