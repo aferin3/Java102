@@ -9,6 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class Helper {
         }
         stage.setScene(new Scene(root));
         stage.setTitle("Patika Turizm Acentesi");
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.WINDOW_MODAL);
 
 

@@ -4,16 +4,18 @@ package com.javafx.turizmacentesi;
 import Model.UserAdmin;
 
 import Model.UserType;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -21,20 +23,22 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
-import java.awt.*;
+
+import javax.swing.event.ChangeEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminPanel implements Initializable {
     @FXML
-    Label welcomeText, labelID,labelName,labelSurname,labelUserName,labelPass,labelType;
+    Label welcomeText, labelID, labelName, labelSurname, labelUserName, labelPass, labelType;
     @FXML
-    TextField editName,editSurname,editUsername,editPass;
+    TextField editName, editSurname, editUsername, editPass;
     @FXML
     ComboBox<String> editType;
     @FXML
@@ -43,20 +47,25 @@ public class AdminPanel implements Initializable {
     @FXML
     VBox anaVbox;
     @FXML
-    ImageView checkOk,dustButton,addButton,editButton;
+    ImageView checkOk, dustButton, addButton, editButton;
 
 
     @FXML
-    AnchorPane usersAnchor,infoAnchor;
+    AnchorPane usersAnchor, infoAnchor;
 
-    int click=0;
+    @FXML
+    RadioButton allRadio, perRadio, adminRadio;
+
+
+    int click = 0;
 
     UserAdmin userAdmin;
     public HBox hBox = new HBox();
 
+    public static boolean isAdded = false;
     ArrayList<UserAdmin> userAdmins = new ArrayList<>();
 
-
+    RadioButton radioButton;
     ObservableList<String> userTypes =
             FXCollections.observableArrayList(
                     "ADMIN",
@@ -65,16 +74,37 @@ public class AdminPanel implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ToggleGroup tg = new ToggleGroup();
+
+        allRadio.setToggleGroup(tg);
+        perRadio.setToggleGroup(tg);
+        adminRadio.setToggleGroup(tg);
+
+        tg.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
+                radioButton = (RadioButton) t1.getToggleGroup().getSelectedToggle();
+                if (radioButton == adminRadio) {
+                    setUsers(UserType.ADMIN);
+                }else if (radioButton == perRadio) {
+                    setUsers(UserType.PERSONAL);
+                }else{
+                    setUsers();
+                }
+            }
+        });
+
+        setRadio();
+        allRadio.setSelected(true);
+
 
 
         editType.setItems(userTypes);
 
 
-
-        userAdmin =(UserAdmin) Login.loginUser;
+        userAdmin = (UserAdmin) Login.loginUser;
         welcomeText.setText(userAdmin.getName() + ", Admin Paneline Hoşgeldin");
 //        userAdmin.listUser(userVbox);
-
 
 
         setUsers();
@@ -82,42 +112,33 @@ public class AdminPanel implements Initializable {
         userVbox.setOnMouseClicked(event ->
 
         {
-
-
-
-
-
-
             try {
                 if (!hBox.equals(null)) {
                     hBox.setStyle("-fx-background-color: transparent;");
                 }
                 Object target = event.getTarget();
                 if (target instanceof Node) {
-                    if(target instanceof VBox){             //tıklanan öğe eğer vbox ın kendisi ise bir işlem veya hata yapmasın diye
+                    if (target instanceof VBox) {             //tıklanan öğe eğer vbox ın kendisi ise bir işlem veya hata yapmasın diye
                         System.out.println("bu bir vbox");
-                    }else {
+                    } else {
                         ((Node) target).setStyle("-fx-background-color: #4299CF");  // öğeye tıklandığında renk değiştirmesi için
                         hBox = (HBox) target;
                         click = userVbox.getChildren().indexOf(target);
                     }
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e);
             }
-
-
-            //click = userVbox.getChildren().indexOf(target);
-
-
-            //System.out.println(userAdmins.get(click).getUserID());
-            //click =0;
 
             clickUser(click);
 
 
         });
 
+
+    }
+
+    private void setRadio() {
 
     }
 
@@ -132,7 +153,7 @@ public class AdminPanel implements Initializable {
         labelType.setText(userAdmins.get(location).getUserType().toString());
     }
 
-    private void setUsers() {
+    public void setUsers() {
         userVbox.getChildren().remove(0, userVbox.getChildren().size());
         ResultSet rs;
 
@@ -140,9 +161,10 @@ public class AdminPanel implements Initializable {
             PreparedStatement ps = DBConnection.getCon().prepareStatement("select * from users ORDER BY id");
             rs = ps.executeQuery();
 
+            userAdmins.clear();
             while (rs.next()) {
 
-                FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("userDesign.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("userDesign.fxml"));
 
                 HBox hBox = fxmlLoader.load();
 
@@ -159,7 +181,7 @@ public class AdminPanel implements Initializable {
                 userType.setText(rs.getString(5));
                 String pass = rs.getString(6);
 
-                if(userType.getText().equals("ADMIN")){
+                if (userType.getText().equals("ADMIN")) {
 
                     Image image = new Image(getClass().getResourceAsStream("/images/adminIcon.png"));
 
@@ -168,13 +190,68 @@ public class AdminPanel implements Initializable {
                 }
 
 
-                UserAdmin userAdminX =new UserAdmin(nameUD.getText(),surnameUD.getText(),userNameUD.getText(),pass, UserType.valueOf(userType.getText()));
+
+                UserAdmin userAdminX = new UserAdmin(nameUD.getText(), surnameUD.getText(), userNameUD.getText(), pass, UserType.valueOf(userType.getText()));
                 userAdminX.setUserID(rs.getInt(1));
                 userAdmins.add(userAdminX);
 
                 userVbox.getChildren().add(hBox);
             }
 
+
+            rs.close();
+            ps.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void setUsers(UserType userTypex) {
+        userVbox.getChildren().remove(0, userVbox.getChildren().size());
+        ResultSet rs;
+
+        try {
+            PreparedStatement ps = DBConnection.getCon().prepareStatement("select * from users WHERE usertype = ? ORDER BY id");
+            ps.setString(1, userTypex.toString());
+            rs = ps.executeQuery();
+            userAdmins.clear();
+            while (rs.next()) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("userDesign.fxml"));
+
+                HBox hBox = fxmlLoader.load();
+
+
+                Label ID = (Label) hBox.getChildren().get(1);
+                ID.setText(rs.getString(1));
+                Label nameUD = (Label) hBox.getChildren().get(2);
+                nameUD.setText(rs.getString(2));
+                Label surnameUD = (Label) hBox.getChildren().get(3);
+                surnameUD.setText(rs.getString(3));
+                Label userNameUD = (Label) hBox.getChildren().get(4);
+                userNameUD.setText(rs.getString(4));
+                Label userType = (Label) hBox.getChildren().get(5);
+                userType.setText(rs.getString(5));
+                String pass = rs.getString(6);
+
+
+
+                if (userType.getText().equals("ADMIN")) {
+
+                    Image image = new Image(getClass().getResourceAsStream("/images/adminIcon.png"));
+
+                    ImageView imageView = (ImageView) hBox.getChildren().get(0);
+                    imageView.setImage(image);
+                }
+
+
+                UserAdmin userAdminX = new UserAdmin(nameUD.getText(), surnameUD.getText(), userNameUD.getText(), pass, UserType.valueOf(userType.getText()));
+                userAdminX.setUserID(rs.getInt(1));
+                userAdmins.add(userAdminX);
+
+                userVbox.getChildren().add(hBox);
+            }
 
 
             rs.close();
@@ -186,30 +263,54 @@ public class AdminPanel implements Initializable {
     }
 
     public void addUser() {
-        Parent parent = new GridPane();
-        Helper.changeScene(this.getClass(),"userAdd.fxml",parent);
-        Stage stage = (Stage) anaVbox.getScene().getWindow();
-        stage.close();
+
+
+        EventHandler<WindowEvent> closeEventHandler = new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Helper.changeScene(this.getClass(),"adminPanel.fxml",null);
+            }
+        };
+        Parent parent;
+        //Helper.changeScene(this.getClass(), "userAdd.fxml", parent);
+
+
+        Stage stage = new Stage();
+        parent = null;
+        try {
+            parent = (Parent) FXMLLoader.load(this.getClass().getResource("userAdd.fxml"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        stage.setScene(new Scene(parent));
+        stage.setOnCloseRequest(closeEventHandler);
+        stage.show();
+
+        Stage stage2 = (Stage) anaVbox.getScene().getWindow();
+        stage2.close();
+
+
 
     }
 
-    public void deleteUser(){
-        if (Helper.onay("Onay","Emin misiniz", userAdmins.get(click).getUsername(),"Sil","İptal")){
+    public void deleteUser() {
+        if (Helper.onay("Onay", "Emin misiniz", userAdmins.get(click).getUsername(), "Sil", "İptal")) {
             userVbox.getChildren().remove(click);
 
             userAdmin.deleteUser(userAdmins.get(click).getUserID());
             userAdmins.remove(click);
             clickUser(0);
 
-        }else{
+        } else {
             System.out.println("olmadı");
 
         }
 
     }
+
     @FXML
-    public void userEdit(){
-        if(editButton.isVisible()){
+    public void userEdit() {
+        if (editButton.isVisible()) {
             checkOk.setVisible(true);
             editButton.setVisible(false);
 
@@ -231,12 +332,7 @@ public class AdminPanel implements Initializable {
             editPass.setVisible(true);
 
 
-
-
-
-
-
-        }else {
+        } else {
             checkOk.setVisible(false);
             editButton.setVisible(true);
             editName.setVisible(false);
@@ -249,7 +345,7 @@ public class AdminPanel implements Initializable {
             dustButton.setVisible(true);
 
 
-            userAdmin.userEdit(Integer.parseInt(labelID.getText()),editName.getText(),editSurname.getText(),editUsername.getText(),editPass.getText(),editType.getValue());
+            userAdmin.userEdit(Integer.parseInt(labelID.getText()), editName.getText(), editSurname.getText(), editUsername.getText(), editPass.getText(), editType.getValue());
             userAdmins.get(click).setName(editName.getText());
             userAdmins.get(click).setSurname(editSurname.getText());
             userAdmins.get(click).setUsername(editUsername.getText());
@@ -257,7 +353,13 @@ public class AdminPanel implements Initializable {
             userAdmins.get(click).setUserType(UserType.valueOf(editType.getValue()));
 
 
-            setUsers();
+            if(adminRadio.isSelected()){
+                setUsers(UserType.ADMIN);
+            }else if(perRadio.isSelected()){
+                setUsers(UserType.PERSONAL);
+            }else{
+                setUsers();
+            }
             clickUser(click);
         }
     }
