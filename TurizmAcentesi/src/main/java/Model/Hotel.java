@@ -6,11 +6,12 @@ public class Hotel {
     private String name;
     private String address;
     private String city;
+    private String district;
     private String tel;
     private String email;
     private int star;
 
-    public Hotel(int id, String name, String address, String city, String email, String tel, int star) {
+    public Hotel(int id, String name, String address, String city,String district, String email, String tel, int star) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -18,6 +19,15 @@ public class Hotel {
         this.tel = tel;
         this.email = email;
         this.star = star;
+        this.district = district;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public int getId() {

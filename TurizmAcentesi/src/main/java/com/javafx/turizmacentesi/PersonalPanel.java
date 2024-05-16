@@ -1,21 +1,21 @@
 package com.javafx.turizmacentesi;
 
 import Model.Hotel;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.ls.LSOutput;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,8 +57,41 @@ public class PersonalPanel implements Initializable {
 
 
             System.out.println(click);
-            Parent parent = new AnchorPane();
-            Helper.changeScene(this.getClass(),"HotelInfo.fxml",parent);
+            System.out.println(hotelList.get(click).getName());
+            AnchorPane anchorPane = new AnchorPane();
+            try {
+                anchorPane = (AnchorPane) FXMLLoader.load(this.getClass().getResource("HotelInfo.fxml"));
+                Label hotelNameLabel = (Label)anchorPane.getChildren().get(3);
+
+                hotelNameLabel.setText(hotelList.get(click).getName());  // otel ismi buradan ayarlanıyor
+
+                GridPane gridPane =(GridPane)anchorPane.getChildren().get(4);
+
+                Label cityLabel = (Label)gridPane.getChildren().get(10);
+                cityLabel.setText(hotelList.get(click).getCity());
+
+                Label districtLabel = (Label)gridPane.getChildren().get(11);
+                districtLabel.setText(hotelList.get(click).getDistrict());
+
+                Label addressLabel = (Label)gridPane.getChildren().get(12);
+                addressLabel.setText(hotelList.get(click).getAddress());
+
+                Label emailLabel = (Label)gridPane.getChildren().get(13);
+                emailLabel.setText(hotelList.get(click).getEmail());
+
+                Label phoneLabel = (Label)gridPane.getChildren().get(14);
+                phoneLabel.setText(hotelList.get(click).getTel());
+
+
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(anchorPane));
+                stage.show();
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
 
         });
 
@@ -94,7 +127,7 @@ public class PersonalPanel implements Initializable {
                 }
 
                 hotelList.add(new Hotel(rs.getInt(1),rs.getString(2),
-                        rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7)));
+                        rs.getString(3),rs.getString(4),rs.getString(8),rs.getString(5),rs.getString(6),rs.getInt(7)));
 
                 hotelVbox.getChildren().add(hBox);
 
