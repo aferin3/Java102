@@ -100,7 +100,7 @@
             </Label>
             <HBox maxWidth="250.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                <children>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -108,7 +108,7 @@
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="30.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="30.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -116,7 +116,7 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="62.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="62.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -124,7 +124,7 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="94.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="94.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -132,7 +132,7 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -179,13 +179,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="2" />
-                  <CheckBox layoutX="10.0" layoutY="14.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <CheckBox layoutX="130.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <CheckBox layoutX="130.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" />
-                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="1" />
-                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" />
-                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" />
+                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" visible="false" />
+                  <CheckBox layoutX="130.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="2" />
+                  <CheckBox layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="14.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="130.0" layoutY="64.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <GridPane layoutX="225.0" layoutY="240.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
@@ -200,16 +200,21 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="2" />
-                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="2" />
-                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" />
-                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="1" />
-                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" visible="false" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="2" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox layoutX="10.0" layoutY="57.0" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <Label layoutX="225.0" layoutY="55.0" text="17/05-17/08  &amp; 17/08-17/05" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="225.0" layoutY="371.0" text="17/05-17/08  &amp; 17/08-17/05" GridPane.columnIndex="2" GridPane.rowIndex="10" GridPane.valignment="TOP">
                <font>
                   <Font size="14.0" />
                </font>

@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class Helper {
@@ -82,6 +86,29 @@ public class Helper {
         imageView.setScaleX(1.0);
         imageView.setScaleY(1.0);
 
+    }
+
+    public static ArrayList<String> getDataFromSql(int id,String columnName,String table){
+        ResultSet rs;
+        ArrayList<String> data;
+        try {
+            PreparedStatement ps= DBConnection.getCon().prepareStatement("SELECT hotel.id,"+ columnName +" FROM hotel INNER JOIN " + table + " ON hotel.id = " + table + ".hotelid WHERE id = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            data = new ArrayList<>();
+            while(rs.next()){
+                data.add(rs.getString(2));
+            }
+            return data;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public static String DateFormatter(String date){
+        String[] splitDate = date.split("-");
+        return splitDate[2]+"/"+splitDate[1]+"/"+splitDate[0];
     }
 
 

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Hotel {
 
     private int id;
@@ -10,8 +12,11 @@ public class Hotel {
     private String tel;
     private String email;
     private int star;
-
-    public Hotel(int id, String name, String address, String city,String district, String email, String tel, int star) {
+    private ArrayList<String> pensionTypes,services;
+    private ArrayList<String> sessions;
+    public Hotel(int id, String name, String address, String city, String district,
+                 String email, String tel, int star, ArrayList<String> pensionTypes,ArrayList<String> services,
+                 ArrayList<String> sessions) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -20,6 +25,33 @@ public class Hotel {
         this.email = email;
         this.star = star;
         this.district = district;
+        this.pensionTypes = pensionTypes;
+        this.services = services;
+        this.sessions = sessions;
+    }
+
+    public ArrayList<String> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(ArrayList<String> sessions) {
+        this.sessions = sessions;
+    }
+
+    public ArrayList<String> getServices() {
+        return services;
+    }
+
+    public void setServices(ArrayList<String> services) {
+        this.services = services;
+    }
+
+    public ArrayList<String> getPensionTypes() {
+        return pensionTypes;
+    }
+
+    public void setPensionTypes (ArrayList<String> pensionTypes) {
+        this.pensionTypes = pensionTypes;
     }
 
     public String getDistrict() {

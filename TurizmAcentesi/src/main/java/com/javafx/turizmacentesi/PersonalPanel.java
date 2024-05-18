@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -14,8 +14,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +26,7 @@ public class PersonalPanel implements Initializable {
     VBox hotelVbox;
 
     public static ArrayList<Hotel> hotelList = new ArrayList<>();
+    private ArrayList<String> pensions,services,sessions;
     HBox hBox = new HBox();
 
     int click = 0;
@@ -56,16 +55,23 @@ public class PersonalPanel implements Initializable {
             }
 
 
-            System.out.println(click);
-            System.out.println(hotelList.get(click).getName());
+            //System.out.println(click);
+            //System.out.println(hotelList.get(click).getName());
             AnchorPane anchorPane = new AnchorPane();
             try {
+
                 anchorPane = (AnchorPane) FXMLLoader.load(this.getClass().getResource("HotelInfo.fxml"));
                 Label hotelNameLabel = (Label)anchorPane.getChildren().get(3);
 
                 hotelNameLabel.setText(hotelList.get(click).getName());  // otel ismi buradan ayarlanıyor
 
                 GridPane gridPane =(GridPane)anchorPane.getChildren().get(4);
+
+                HBox yildizHbox =(HBox)gridPane.getChildren().get(9);
+                for(int i = 0; i<hotelList.get(click).getStar();i++){
+                    ImageView imageView = (ImageView) yildizHbox.getChildren().get(i);
+                    imageView.setVisible(true);
+                }
 
                 Label cityLabel = (Label)gridPane.getChildren().get(10);
                 cityLabel.setText(hotelList.get(click).getCity());
@@ -77,10 +83,45 @@ public class PersonalPanel implements Initializable {
                 addressLabel.setText(hotelList.get(click).getAddress());
 
                 Label emailLabel = (Label)gridPane.getChildren().get(13);
-                emailLabel.setText(hotelList.get(click).getEmail());
+                emailLabel.setText(hotelList.get(click).getTel());
 
                 Label phoneLabel = (Label)gridPane.getChildren().get(14);
-                phoneLabel.setText(hotelList.get(click).getTel());
+                phoneLabel.setText(hotelList.get(click).getEmail());
+
+                Label sessionSummerLabel = (Label)gridPane.getChildren().get(17);
+                sessionSummerLabel.setText("Yaz: " + hotelList.get(click).getSessions().get(0));
+
+                Label sessionWinterLabel = (Label)gridPane.getChildren().get(18);
+                sessionWinterLabel.setText("Kış: " + hotelList.get(click).getSessions().get(1));
+
+                GridPane serviceGridPane = (GridPane)gridPane.getChildren().get(15);
+                CheckBox checkBox;
+                serviceGridPane.setDisable(true);
+                int x =0;
+                for(String sbox : hotelList.get(click).getServices()){
+                    checkBox = (CheckBox) serviceGridPane.getChildren().get(x);
+                    checkBox.setText(sbox);
+                    checkBox.setSelected(true);
+                    checkBox.setVisible(true);
+                    checkBox.setOpacity(1);
+                    x++;
+                }
+                //System.out.println(hotelList.get(click).getServices());
+
+                GridPane pensionGridPane = (GridPane) gridPane.getChildren().get(16);
+                pensionGridPane.setDisable(true);
+                x=0;
+                for( String cBox :hotelList.get(click).getPensionTypes()){
+                    checkBox = (CheckBox) pensionGridPane.getChildren().get(x);
+                    checkBox.setText(cBox);
+                    checkBox.setSelected(true);
+                    checkBox.setVisible(true);
+                    checkBox.setOpacity(1);
+
+                    x++;
+                    //System.out.println(hotelList.get(click).getPensionTypes().get(i));
+                }
+
 
 
 
@@ -103,7 +144,9 @@ public class PersonalPanel implements Initializable {
         try {
             PreparedStatement pst = DBConnection.getCon().prepareStatement("SELECT * FROM HOTEL ORDER BY id");
             rs = pst.executeQuery();
+
             hotelList.clear();
+
 
 
             while (rs.next()) {
@@ -126,9 +169,22 @@ public class PersonalPanel implements Initializable {
                     imageViews[i].setVisible(true);
                 }
 
-                hotelList.add(new Hotel(rs.getInt(1),rs.getString(2),
-                        rs.getString(3),rs.getString(4),rs.getString(8),rs.getString(5),rs.getString(6),rs.getInt(7)));
+                int id = rs.getInt(1);
+                services= Helper.getDataFromSql(id,"sname","services");
+                pensions = Helper.getDataFromSql(id,"ptype","pensiontypes");
+                ArrayList<String> sesStart= Helper.getDataFromSql(id,"starts","sessions");
+                ArrayList<String> sesEnd= Helper.getDataFromSql(id,"ends","sessions");
+                sessions = new ArrayList<>();
+                for(int i = 0; i<sesStart.size(); i++){
+                    sessions.add(Helper.DateFormatter(sesStart.get(i))+ " - " +Helper.DateFormatter(sesEnd.get(i)));
+                }
 
+
+
+                hotelList.add(new Hotel(id,rs.getString(2),
+                        rs.getString(3),rs.getString(4),rs.getString(8),
+                        rs.getString(5),rs.getString(6),rs.getInt(7),pensions,services,sessions));
+                //System.out.println(sessions);
                 hotelVbox.getChildren().add(hBox);
 
 
@@ -136,9 +192,9 @@ public class PersonalPanel implements Initializable {
             }
 
 
-
         } catch (Exception e) {
             System.out.println(e);
+            System.out.println("hata");
         }
     }
 }
