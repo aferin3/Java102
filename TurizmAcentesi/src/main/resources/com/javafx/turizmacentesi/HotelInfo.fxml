@@ -8,16 +8,6 @@
 
 <AnchorPane prefHeight="467.0" prefWidth="804.0" style="-fx-background-color: fffaf0;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.turizmacentesi.HotelInfo">
    <children>
-       <ImageView fx:id="editButton" fitHeight="65.0" fitWidth="81.0" opacity="0.56" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
-           <image>
-               <Image url="@../../../images/editButton.png" />
-           </image>
-       </ImageView>
-       <ImageView fx:id="checkOk" fitHeight="87.0" fitWidth="94.0" layoutX="330.0" layoutY="365.0" opacity="0.55" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="20.0">
-           <image>
-               <Image url="@../../../images/checMarkButton.png" />
-           </image>
-       </ImageView>
       <ImageView fitHeight="467.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../../images/hotelPhoto.jpg" />
@@ -30,11 +20,11 @@
          <padding>
             <Insets right="30.0" />
          </padding></Label>
-      <GridPane layoutX="392.0" layoutY="111.0" prefHeight="423.0" prefWidth="574.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <GridPane layoutX="392.0" layoutY="111.0" prefHeight="423.0" prefWidth="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="225.39999237060547" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="79.0000076293945" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="404.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="143.2" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="7.599999999999994" prefWidth="17.599999999999994" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="424.0" minWidth="10.0" prefWidth="396.79999999999995" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
@@ -100,7 +90,7 @@
             </Label>
             <HBox maxWidth="250.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                <children>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="star1" fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -108,7 +98,7 @@
                         <Insets left="20.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="30.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="star2" fitHeight="32.0" fitWidth="35.0" layoutX="30.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -116,7 +106,7 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="62.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="star3" fitHeight="32.0" fitWidth="35.0" layoutX="62.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -124,7 +114,7 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="94.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="star4" fitHeight="32.0" fitWidth="35.0" layoutX="94.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -132,7 +122,7 @@
                         <Insets left="10.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <ImageView fx:id="star5" fitHeight="32.0" fitWidth="35.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../../../images/star.png" />
                      </image>
@@ -219,7 +209,24 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <TextField maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField layoutX="225.0" layoutY="52.0" maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField layoutX="225.0" layoutY="83.0" maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField layoutX="225.0" layoutY="114.0" maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField layoutX="225.0" layoutY="148.0" maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <DatePicker visible="false" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <DatePicker visible="false" GridPane.columnIndex="2" GridPane.rowIndex="10" GridPane.valignment="TOP" />
          </children>
       </GridPane>
+       <ImageView fx:id="checkOk" fitHeight="87.0" fitWidth="94.0" layoutX="330.0" layoutY="365.0" onMouseClicked="#editOK" onMouseEntered="#bigger" onMouseExited="#opak" opacity="0.55" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
+           <image>
+               <Image url="@../../../images/checMarkButton.png" />
+           </image>
+       </ImageView>
+       <ImageView fx:id="editButton" fitHeight="65.0" fitWidth="81.0" onMouseClicked="#editHotel" onMouseEntered="#bigger" onMouseExited="#opak" opacity="0.53" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0">
+           <image>
+               <Image url="@../../../images/editButton.png" />
+           </image>
+       </ImageView>
    </children>
 </AnchorPane>

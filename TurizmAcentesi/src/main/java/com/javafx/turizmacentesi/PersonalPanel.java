@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -61,11 +62,11 @@ public class PersonalPanel implements Initializable {
             try {
 
                 anchorPane = (AnchorPane) FXMLLoader.load(this.getClass().getResource("HotelInfo.fxml"));
-                Label hotelNameLabel = (Label)anchorPane.getChildren().get(3);
+                Label hotelNameLabel = (Label)anchorPane.getChildren().get(1);
 
                 hotelNameLabel.setText(hotelList.get(click).getName());  // otel ismi buradan ayarlanıyor
 
-                GridPane gridPane =(GridPane)anchorPane.getChildren().get(4);
+                GridPane gridPane =(GridPane)anchorPane.getChildren().get(2);
 
                 HBox yildizHbox =(HBox)gridPane.getChildren().get(9);
                 for(int i = 0; i<hotelList.get(click).getStar();i++){
@@ -196,5 +197,8 @@ public class PersonalPanel implements Initializable {
             System.out.println(e);
             System.out.println("hata");
         }
+
+
     }
+
 }
