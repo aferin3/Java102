@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -111,5 +112,45 @@ public class Helper {
         return splitDate[2]+"/"+splitDate[1]+"/"+splitDate[0];
     }
 
+    public static void editCheckBox(CheckBox[] checkBoxes,ArrayList<String> commonValues,ArrayList<String> specificValues){
+        for(CheckBox checkBox : checkBoxes){
+            if(checkBox.isSelected()){
+                specificValues.add(checkBox.getText());
+            }
+        }
+
+
+        for (int i = 0; i < 7; i++) {
+            checkBoxes[i].setVisible(true);
+            checkBoxes[i].setSelected(false);
+            checkBoxes[i].setText(commonValues.get(i));
+            if(specificValues.contains(commonValues.get(i))){
+                checkBoxes[i].setSelected(true);
+            }
+
+        }
+    }
+
+    public static void checkBoxOK(CheckBox[] checkBoxes,ArrayList<String> commonValues,ArrayList<String> specificValues){
+        specificValues.clear();
+        for(CheckBox checkBox:checkBoxes){
+            if(checkBox.isSelected()){
+                specificValues.add(checkBox.getText());
+                //System.out.println(checkBox.getText());
+            }
+            checkBox.setOpacity(1);
+        }
+
+        for(int i = 0; i <commonValues.size() ; i++){
+            if(i<specificValues.size()){
+                checkBoxes[i].setText(specificValues.get(i));
+                checkBoxes[i].setVisible(true);
+                checkBoxes[i].setSelected(true);
+            }else{
+                checkBoxes[i].setVisible(false);
+                checkBoxes[i].setSelected(false);
+            }
+        }
+    }
 
 }
