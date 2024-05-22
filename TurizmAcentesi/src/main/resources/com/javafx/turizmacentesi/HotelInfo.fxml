@@ -199,12 +199,12 @@
                   <CheckBox fx:id="checkBox14" mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <Label layoutX="225.0" layoutY="55.0" text="17/05-17/08  &amp; 17/08-17/05" GridPane.columnIndex="2" GridPane.rowIndex="9">
+            <Label fx:id="donem1" layoutX="225.0" layoutY="55.0" text="17/05-17/08  &amp; 17/08-17/05" GridPane.columnIndex="2" GridPane.rowIndex="9">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="225.0" layoutY="371.0" text="17/05-17/08  &amp; 17/08-17/05" GridPane.columnIndex="2" GridPane.rowIndex="10" GridPane.valignment="TOP">
+            <Label fx:id="donem2" layoutX="225.0" layoutY="371.0" text="17/05-17/08  &amp; 17/08-17/05" GridPane.columnIndex="2" GridPane.rowIndex="10" GridPane.valignment="TOP">
                <font>
                   <Font size="14.0" />
                </font>
@@ -214,8 +214,24 @@
             <TextField fx:id="addressTextField" layoutX="225.0" layoutY="83.0" maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="emailTextField" layoutX="225.0" layoutY="114.0" maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <TextField fx:id="telTextField" layoutX="225.0" layoutY="148.0" maxWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <DatePicker visible="false" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-            <DatePicker visible="false" GridPane.columnIndex="2" GridPane.rowIndex="10" GridPane.valignment="TOP" />
+            <DatePicker fx:id="startDate" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin></DatePicker>
+            <DatePicker fx:id="finishDate" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="50.0" />
+               </GridPane.margin></DatePicker>
+            <Label fx:id="startpickerLabel" layoutX="184.0" layoutY="372.0" text="Yaz Dönemi Başlangıç:" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="finishpickerLabel" layoutX="184.0" layoutY="372.0" text="Yaz Dönemi Bitiş" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="10" GridPane.valignment="TOP">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
        <ImageView fx:id="checkOk" fitHeight="87.0" fitWidth="94.0" layoutX="330.0" layoutY="365.0" onMouseClicked="#editOK" onMouseEntered="#bigger" onMouseExited="#opak" opacity="0.55" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">

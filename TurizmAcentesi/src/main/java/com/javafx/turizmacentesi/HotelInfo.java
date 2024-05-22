@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class HotelInfo implements Initializable {
@@ -29,10 +33,16 @@ public class HotelInfo implements Initializable {
     @FXML
     TextField cityTextField,districtTextField,addressTextField,telTextField,emailTextField;
     @FXML
-    Label cityLabel,districtLabel,addressLabel,telLabel,emailLabel;
+    Label cityLabel,districtLabel,addressLabel,telLabel,emailLabel,startpickerLabel,finishpickerLabel,donem1,donem2;
     @FXML
     CheckBox checkBox1,checkBox2,checkBox3,checkBox4,checkBox5,checkBox6,checkBox7,
             checkBox8,checkBox9,checkBox10,checkBox11,checkBox12,checkBox13,checkBox14;
+
+    @FXML
+    DatePicker startDate,finishDate;
+
+    LocalDate yazStart,yazFinish;
+
 
     CheckBox[] serviceCheckBoxes=new CheckBox[7];
     CheckBox[] pensionCheckBoxes=new CheckBox[7];
@@ -152,6 +162,19 @@ public class HotelInfo implements Initializable {
     @FXML
     public void editHotel(MouseEvent event){
 
+        startDate.setVisible(true);
+        finishDate.setVisible(true);
+        startpickerLabel.setVisible(true);
+        finishpickerLabel.setVisible(true);
+        donem1.setVisible(false);
+        donem2.setVisible(false);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        yazStart= LocalDate.parse(donem1.getText().substring(5,15),formatter);
+        startDate.setValue(yazStart);
+        yazFinish = LocalDate.parse(donem1.getText().substring(18,28),formatter);
+        finishDate.setValue(yazFinish);
 
         serviceGrid.setDisable(false);
         objectServices= new ArrayList<>();
@@ -195,6 +218,22 @@ public class HotelInfo implements Initializable {
     }
     @FXML
     void editOK(){
+
+        startDate.setVisible(false);
+        finishDate.setVisible(false);
+        startpickerLabel.setVisible(false);
+        finishpickerLabel.setVisible(false);
+        donem1.setVisible(true);
+        donem2.setVisible(true);
+
+        yazStart = startDate.getValue();
+        yazFinish = finishDate.getValue();
+
+        LocalDate kisStart = yazFinish.plusDays(1);
+        LocalDate kisFinish = yazStart.minusDays(1);
+
+        donem1.setText("Yaz: " + Helper.DateFormatter(yazStart.toString()) + " - " + Helper.DateFormatter(yazFinish.toString()));
+        donem2.setText("Kış: " + Helper.DateFormatter(kisStart.toString()) + " - " + Helper.DateFormatter(kisFinish.toString()));
 
         serviceGrid.setDisable(true);
         pensionGrid.setDisable(true);
