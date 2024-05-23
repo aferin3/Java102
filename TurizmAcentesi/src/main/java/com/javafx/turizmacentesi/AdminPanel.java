@@ -97,7 +97,7 @@ public class AdminPanel implements Initializable {
 
 
 
-        setRadio();
+
         allRadio.setSelected(true);
 
 
@@ -144,9 +144,6 @@ public class AdminPanel implements Initializable {
 
     }
 
-    private void setRadio() {
-
-    }
 
     private void clickUser(int location) {
 

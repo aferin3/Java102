@@ -1,6 +1,7 @@
 package com.javafx.turizmacentesi;
 
 import Model.Hotel;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -74,6 +77,8 @@ public class PersonalPanel implements Initializable {
                     imageView.setVisible(true);
                 }
 
+                Label idLabel = (Label)anchorPane.getChildren().get(6);
+                idLabel.setText(String.valueOf(hotelList.get(click).getId()));
                 Label cityLabel = (Label)gridPane.getChildren().get(10);
                 cityLabel.setText(hotelList.get(click).getCity());
 
@@ -128,6 +133,12 @@ public class PersonalPanel implements Initializable {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(anchorPane));
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent windowEvent) {
+                        setHotels();
+                    }
+                });
                 stage.show();
 
             } catch (Exception e) {

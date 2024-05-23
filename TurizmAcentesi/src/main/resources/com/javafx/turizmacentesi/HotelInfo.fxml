@@ -244,5 +244,7 @@
                <Image url="@../../../images/editButton.png" />
            </image>
        </ImageView>
+      <TextField fx:id="nameField" layoutX="288.0" layoutY="12.0" prefHeight="30.0" prefWidth="440.0" visible="false" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="0.0" />
+      <Label fx:id="idLabel" layoutX="742.0" layoutY="447.0" text="Label" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="5.0" />
    </children>
 </AnchorPane>

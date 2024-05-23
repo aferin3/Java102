@@ -13,6 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,9 +34,9 @@ public class HotelInfo implements Initializable {
     @FXML
     HBox starHbox;
     @FXML
-    TextField cityTextField,districtTextField,addressTextField,telTextField,emailTextField;
+    TextField cityTextField,districtTextField,addressTextField,telTextField,emailTextField,nameField;
     @FXML
-    Label cityLabel,districtLabel,addressLabel,telLabel,emailLabel,startpickerLabel,finishpickerLabel,donem1,donem2;
+    Label cityLabel,districtLabel,addressLabel,telLabel,emailLabel,startpickerLabel,finishpickerLabel,donem1,donem2,idLabel;
     @FXML
     CheckBox checkBox1,checkBox2,checkBox3,checkBox4,checkBox5,checkBox6,checkBox7,
             checkBox8,checkBox9,checkBox10,checkBox11,checkBox12,checkBox13,checkBox14;
@@ -184,6 +187,9 @@ public class HotelInfo implements Initializable {
         objectPensions= new ArrayList<>();
         Helper.editCheckBox(pensionCheckBoxes,pensions,objectPensions);
 
+        nameField.setText(nameLabel.getText());
+        nameField.setVisible(true);
+
         cityTextField.setText(cityLabel.getText());
         cityTextField.setVisible(true);
 
@@ -241,11 +247,20 @@ public class HotelInfo implements Initializable {
         Helper.checkBoxOK(pensionCheckBoxes,pensions,objectPensions);
 
 
+        nameField.setVisible(false);
         cityTextField.setVisible(false);
         districtTextField.setVisible(false);
         addressTextField.setVisible(false);
         telTextField.setVisible(false);
         emailTextField.setVisible(false);
+
+        nameLabel.setText(nameField.getText());
+        cityLabel.setText(cityTextField.getText());
+        districtLabel.setText(districtTextField.getText());
+        addressLabel.setText(addressTextField.getText());
+        telLabel.setText(telTextField.getText());
+        emailLabel.setText(emailTextField.getText());
+
 
 
         starHbox.setDisable(true);
@@ -256,6 +271,28 @@ public class HotelInfo implements Initializable {
             if(i>=starCount){
                 imageViews[i].setVisible(false);
             }
+        }
+
+        try {
+
+
+            PreparedStatement preparedStatement = DBConnection.getCon().prepareStatement("UPDATE hotel SET name=?,address=?,city=?,email=?,phonenumber=?,star=?,district=? WHERE id=?;");
+            preparedStatement.setString(1, nameField.getText());
+            preparedStatement.setString(2, addressLabel.getText());
+            preparedStatement.setString(3, cityLabel.getText());
+            preparedStatement.setString(4, emailLabel.getText());
+            preparedStatement.setString(5, telLabel.getText());
+            preparedStatement.setInt(6, starCount);
+            preparedStatement.setString(7,districtLabel.getText());
+            preparedStatement.setInt(8, Integer.parseInt(idLabel.getText()));
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         starCount = 0;
     }
