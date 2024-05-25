@@ -131,15 +131,32 @@ public class Helper {
         }
     }
 
-    public static void checkBoxOK(CheckBox[] checkBoxes,ArrayList<String> commonValues,ArrayList<String> specificValues){
-        specificValues.clear();
-        for(CheckBox checkBox:checkBoxes){
-            if(checkBox.isSelected()){
-                specificValues.add(checkBox.getText());
-                //System.out.println(checkBox.getText());
+    public static void checkBoxOK(CheckBox[] checkBoxes,ArrayList<String> commonValues,ArrayList<String> specificValues,
+                                  String tableName, String columnName,int id){
+        try {
+            final PreparedStatement preparedStatement = DBConnection.getCon().prepareStatement("DELETE FROM "+tableName+" WHERE hotelid=?");
+            final PreparedStatement preparedStatement2 = DBConnection.getCon().prepareStatement("INSERT INTO "+tableName+" VALUES (?,?)");
+            specificValues.clear();
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+            for(CheckBox checkBox:checkBoxes){
+                if(checkBox.isSelected()){
+                    specificValues.add(checkBox.getText());
+                    preparedStatement2.setInt(1,id);
+                    preparedStatement2.setString(2,checkBox.getText());
+                    preparedStatement2.executeUpdate();
+                    //System.out.println(checkBox.getText());
+                }
+                checkBox.setOpacity(1);
             }
-            checkBox.setOpacity(1);
+            preparedStatement2.close();
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
+
 
         for(int i = 0; i <commonValues.size() ; i++){
             if(i<specificValues.size()){
@@ -152,5 +169,9 @@ public class Helper {
             }
         }
     }
+
+
+
+
 
 }

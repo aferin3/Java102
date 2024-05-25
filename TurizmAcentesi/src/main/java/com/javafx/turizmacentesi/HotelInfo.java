@@ -83,9 +83,6 @@ public class HotelInfo implements Initializable {
         pensionCheckBoxes[6]=checkBox14;
 
 
-
-
-
         for (int i = 0; i < 5; i++) {
             final int k = i;
             imageViews[i].setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -154,7 +151,7 @@ public class HotelInfo implements Initializable {
         ImageView imageView = (ImageView) event.getSource();
 
         Helper.bigButton(imageView);
-        System.out.println(starCount);
+       // System.out.println(starCount);
     }
     @FXML
     public void opak(MouseEvent event){
@@ -163,6 +160,8 @@ public class HotelInfo implements Initializable {
         Helper.smallButton(imageView);
     }
     @FXML
+
+
     public void editHotel(MouseEvent event){
 
         startDate.setVisible(true);
@@ -171,6 +170,8 @@ public class HotelInfo implements Initializable {
         finishpickerLabel.setVisible(true);
         donem1.setVisible(false);
         donem2.setVisible(false);
+
+        //Helper.checkBoxData(Integer.parseInt(idLabel.getText()),serviceCheckBoxes,"services","sname");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -243,8 +244,11 @@ public class HotelInfo implements Initializable {
 
         serviceGrid.setDisable(true);
         pensionGrid.setDisable(true);
-        Helper.checkBoxOK(serviceCheckBoxes,services,objectServices);
-        Helper.checkBoxOK(pensionCheckBoxes,pensions,objectPensions);
+
+
+        Helper.checkBoxOK(serviceCheckBoxes,services,objectServices,"services","sname", Integer.parseInt(idLabel.getText()));
+        Helper.checkBoxOK(pensionCheckBoxes,pensions,objectPensions,"pensiontypes","ptype",Integer.parseInt(idLabel.getText()));
+
 
 
         nameField.setVisible(false);
